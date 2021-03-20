@@ -1,4 +1,4 @@
-import Link from '@/LabelComponent/Link';
+import { Link } from '@/components/common';
 
 export default ({ item, visible = true }) => {
   if (!visible) return null;
