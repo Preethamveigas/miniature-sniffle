@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 159.542 159.543">
+    <defs>
+        <filter id="prefix__Path_3008" width="2rem" height="2rem" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="13.5"/>
+            <feFlood flood-opacity=".071"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="prefix__Group_2280" data-name="Group 2280" transform="translate(13.666 10.668)">
+        <path id="prefix__Path_3007" d="M66.062 132.121H6.614a6.6 6.6 0 0 1-4.67-11.275l12.972-12.972a66.058 66.058 0 1 1 51.147 24.248z" data-name="Path 3007" style="fill:#f7941d"/>
+        <g transform="translate(-13.67 -10.67)">
+            <path id="prefix__Path_3008-2" d="M39.272 78.542H3.932a3.926 3.926 0 0 1-2.776-6.7l7.711-7.712a39.27 39.27 0 1 1 30.405 14.412z" data-name="Path 3008" transform="rotate(-90 78.27 37.77)" style="fill:#fff"/>
+        </g>
+        <circle id="prefix__Ellipse_85" cx="14.594" cy="14.594" r="14.594" data-name="Ellipse 85" transform="rotate(-14.98 235.113 -154.421)" style="fill:#f6931c"/>
+    </g>
+</svg>
