@@ -9,6 +9,7 @@ import FormItem from '@/container/Form/formItem';
 import Button from '@/components/common/button';
 import Spin from '@/components/Spin';
 import { Link, Input } from '@/components/common';
+import { Title as LoginTitle } from '@/presentational/title';
 
 export default () => {
   const [loader, setLoader] = useState(false);
@@ -46,7 +47,7 @@ export default () => {
 
     return (
       <>
-        <span className="font-medium">LOGIN</span>
+        <LoginTitle title="Login to your account" />
         <FormItem
           name="email"
           rule={{
@@ -82,7 +83,9 @@ export default () => {
             Login
           </Button>
         </FormItem>
-        <Link to="/resetpassword" className="block text-center">Forgotpassword</Link>
+        <Link to="/resetpassword" className="block text-center">
+          Forgotpassword
+        </Link>
       </>
     );
   };
