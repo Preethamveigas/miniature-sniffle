@@ -6,10 +6,7 @@ module.exports = {
       position: ['bottom', 'left'],
     },
     fontFamily: {
-      medium: 'sans-medium',
-      regular: 'sans-regular',
-      light: 'sans-light',
-      demiBold: 'sans-bold',
+      sans: ["'Roboto'", 'ui-sans-serif', 'sans-serif', 'system-ui', '-apple-system'],
     },
     extend: {
       colors: {
