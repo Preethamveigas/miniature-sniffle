@@ -1,8 +1,5 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { useQuery } from 'react-query';
-import { useHistory } from 'react-router-dom';
-import apiservice from '@/service/apis';
-import { useDispatch } from '@/store/configureStore';
+import React, { useState } from 'react';
+
 import { api } from '@/service';
 import Form, { useForm } from '@/container/Form';
 import FormItem from '@/container/Form/formItem';
@@ -10,15 +7,13 @@ import Button from '@/components/common/button';
 import Spin from '@/components/Spin';
 import { Link, Input } from '@/components/common';
 import { Title as LoginTitle, Card } from '@/presentational';
-import useLogin from '@/hooks/useLogin'
+import { useDispatch } from '@/store/configureStore';
+import { useHistory } from 'react-router-dom';
+import apiservice from '@/service/apis';
 
-const wait = (timeout) => new Promise((resolve, reject) => setTimeout(() => {
-  resolve()
-}, timeout))
 
 export default () => {
   const [loader, setLoader] = useState(false);
-  const [login, setLogin] = useLogin()
 
   const FormItems = () => {
     const v = useForm();
@@ -30,23 +25,30 @@ export default () => {
       return apiservice.Login(userPayload.current);
     }
 
+    const apiToken = (token) => new Promise((res, rej) => {
+      api.interceptors.request.use((config) => {
+        config.headers.auth = token;
+        return config;
+      });
+      setTimeout(() => {
+        res();
+      }, 1000);
+    });
 
     async function saveUser(data) {
-      // const setoken = await apiToken(data?.token);
+      const setoken = await apiToken(data?.token);
       dispatch({
         type: 'LOGIN',
         logged: true,
         data,
       });
-
-      setLogin(data?.token ?? null)
-      await wait(500)
+      setLoader(false);
       return history.push('');
     }
 
     return (
       <>
-        <LoginTitle m="mb-3" xl3 bolder title="Login to your account" />
+        <LoginTitle m="mb-3" bolder xl3 title="Reset your password" />
         <FormItem
           name="email"
           rule={{
@@ -54,11 +56,9 @@ export default () => {
             message: 'Email is required',
           }}
         >
-          <Input float label="Email" name="email" />
+          <Input label="Email" float />
         </FormItem>
-        <FormItem name="password">
-          <Input float label="Password" />
-        </FormItem>
+
         <FormItem name="username">
           <Button
             onClick={(e) => {
@@ -80,15 +80,15 @@ export default () => {
             }}
           >
             <span className="text-center text-xl font-medium">
-              Login
+              Submit
             </span>
           </Button>
         </FormItem>
         <Link
-          to="/resetpassword"
+          to="/login"
           className="mt-3 cursor-pointer font-normal block text-center hover:text-blue-600"
         >
-          Forgot Password
+          Login
         </Link>
       </>
     );
@@ -103,6 +103,3 @@ export default () => {
     </Card>
   );
 };
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTEzZTc0OTAtYTIzNy0xMWVhLTlhY2ItZjkxMzFlNDZjM2VkIiwiYWNjZXNzIjoiYXV0aCIsImlhdCI6MTYxNDI1MTg3NSwiZXhwIjoxNjE0ODU2Njc1fQ.T0ixAQsVCA60A11VChC7TFg2AJKUdnAm_4kCUG1703E
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTEzZTc0OTAtYTIzNy0xMWVhLTlhY2ItZjkxMzFlNDZjM2VkIiwiYWNjZXNzIjoiYXV0aCIsImlhdCI6MTYxNDI1MTg3NSwiZXhwIjoxNjE0ODU2Njc1fQ.T0ixAQsVCA60A11VChC7TFg2AJKUdnAm_4kCUG1703E

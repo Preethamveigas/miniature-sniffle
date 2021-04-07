@@ -7,3 +7,32 @@
   font-size: 16px;
   font-weight: bold;
 }
+.chatinput-at-symbol {
+  width: 50px;
+  height: 50px;
+}
+.input-send-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+.input-send-button::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-image: url(data:image/webp;base64,UklGRpQFAABXRUJQVlA4WAoAAAAQAAAAxwAAxwAAQUxQSKcEAAABHAVt2zAxf9g7GCJiAlRUKOhRMSyakmpbrcAKC5GRWSXERQx0nFUTiOhayMAFLmKg42iAe+n7DCJiAijRtm3aduY3Y9u6pTi5Ps+MbTsp2batknXNZ7SWUkq2bafmWbjn7r3PWrvFiIgJwP/+/89icAmZC4LffNlZhs8O/6bLztLwxd9wmRma3/ZbLTND2zd+m6Wn6fC3WHqaLn/47ZWaotvLVmqKroOr1CTdO1PJSUZpPCUnGK2ylJhg1IejxDij3wzFxylx8RMfp8zJTnyMUgc38TGKfcJsYpSCLzGJUYoOWhIjFO6kJEco3ihJNqlQCUk1qfLQkWpQ6SYj1aDaRUW6TsWTiHSdqgcN6Rp1PyExU6P2y0GmRv3BQKZKHzq+bJV+NHTZCn2p2IIK/XmQBWX6dOMKyvTrQtVRom8npo4S/TsQdRTp4Sd4O4v08oXTWaCnA0xXgd52KF0FetyAdOUp/UtZCqM7T/H398o6ILpzlL/v2pS9IXTnKP/7xaDwBaAnT4U5gNJneT15ajwceFHcKK43T43frgo8SulPSu8tUGUDwLkUfyvrLVDniQCGKD/q6itQ59frA9iSCr2qviKVzgLAStRoNfUVqfV0tFKlVtRfotYvt0Tr6zpOPf0lqp1BaIE6dzX9Jeq9EKEXUemqZaBMvV9sh9C9qHVWMlCm4imEJ6l21DFYpuarEb4F1T6pcrBCzZ8lEb4i9d4iBitUPYH27yiKEoaq1H092lep2AsYqlL3Jz1ofwU1W7qhKpWPw/AEqtZkwzVqvw6Ge1L3STVco/aP94Bhgsp3ouEa1Y/Og+Hm1L7yXEL918B0hY/UzTQ7Uv2HB8F4lOpHmpq65oowvo3qn2TdmtqvgvkF1H/TxJS9fwDMj6cHI82Kuuprw3wP+tDT4BFNV8IyTi9aniE97+0Py80+94Pmwc1aapvCcvkM/XgS4T4dl8P6cXpyZ8J+d74o7p19YX0rfblStcb2uzj3opzKFrA+n96c6cJj+12ce1HApbA/jv4cRYTH9rs492IEb+0N+93pzycFx/a7JPeii9LmsN/1G4/cisJj+12Se9Hko0vgcNMX6NGoKzy23yW5F8nZS9aBw2XT9KlXF+1j9KoBu4V+VVyn0bMH1uaf+GbDuoS+XW2YbRhdeNKF24Zog7fB2qBtOG3YbVhtmG0YXXjShduGaIO3wdqgbTht2G1YbZhtGF140oVLSu5EeUFKFvHvpDkntwNY9qQwo+TTbdB6uyyl5EKEHyPqMPLcqm2w45eCNiMnwHDFaTmLkEmY3yRmErKnBY6QMvh4GNY7fyriCR2/JOyw6riEy8dNcHqtgKDj483d4LDonI5z4Dr+QVTGxrMrOMOajYiUjaMQ5ZXRHDLGEe1RkWwyhiJC+p0IFhcPIfJ1yu4mFT/tFB1wjbNBxQ0QeayjJ0x8tKEMdLzu5FJxFqRuUHYRTDy9WAxwgwNn4ghIPtHOsJ1uNgrZPa/YKLaDzPqFYZO6xSe2HYwegPybjX4+sOFeg29iCnCqyZeA33K23bZQ2f96m2/Bf8lzLYUASte/qeWp44XCIAgCKF5h6yDA//7/OzYAVlA4IMYAAADQEwCdASrIAMgAPpE+nEoloyKhqF+YALASCWlu4XaxG/Ol8AfwD8AP0A/P3v8EsKmGaypB5LIqYWchSHoWRUws5CcjZZjOIvw7GTPRYvOHddV0kSe8FXF7r8VIGSeraS5sIK8Qksg4neelISWQcTvs1lr8OSWUr0Fz52Vz+r59df32qXWalyU1OypB0L5I50psCKG5APAYqq/t9kKXt+KkHksiphlwAAD+/7wRlmYN3sz9Tuwse9mfqd2FjDIPm8IpP0AAAAA=);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 8px;
+}
+.chat-input-container {
+  width: 87%;
+  margin-left: 0.7rem;
+  height: 60px;
+  & input {
+    height: 100%;
+  }
+}

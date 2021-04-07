@@ -10,13 +10,13 @@ function validateEmail(email) {
 export default ({ name, children, rule }) => {
   const dispatch = setFormValue();
   const ref = createRef();
+  const labelRef = useRef();
   const form = useForm();
   const verify = (name, { rule }) => {
     switch (name) {
       case 'email':
         const email = form[name];
         if (email && !validateEmail(email)) {
-
         }
         break;
       default:
@@ -26,7 +26,16 @@ export default ({ name, children, rule }) => {
   useEffect(() => {
     if (ref && ref.current) {
       ref?.current.classList.add('my-5');
+      ref.current.onclick = () => {
+        labelRef?.current?.setAttribute('data-type', 'float-it');
+      };
       ref.current.onblur = (e) => {
+        if (ref?.current?.value?.length) {
+          // labelRef.current.removeAttribute('data-type');
+        } else {
+          labelRef?.current?.setAttribute('data-type', 'float');
+        }
+
         if (rule?.require) {
           verify(name, rule);
         }
@@ -36,5 +45,19 @@ export default ({ name, children, rule }) => {
     }
   }, [ref]);
 
-  return React.Children.map(children, (child) => React.cloneElement(child, { ref }));
+  return React.Children.map(children, (child) => (
+    <span className="relative block">
+      {child?.props?.label && (
+        <label
+          className="absolute"
+          data-type={child?.props?.float && 'float'}
+          htmlFor={child?.props?.name || ''}
+          ref={labelRef}
+        >
+          {child?.props?.label}
+        </label>
+      )}
+      {React.cloneElement(child, { ref })}
+    </span>
+  ));
 };

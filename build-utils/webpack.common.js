@@ -10,7 +10,7 @@ const paths = require('./paths');
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [`${paths.src}/index.js`],
+  entry: ['react-hot-loader/patch', `${paths.src}/index.js`],
 
   // Where webpack outputs the assets and bundles
   output: {
@@ -18,6 +18,7 @@ module.exports = {
     filename: '[name].bundle.js',
     publicPath: '/',
   },
+
   resolve: {
     alias: {
       '@': [path.resolve(__dirname, '..', 'src')],
@@ -55,7 +56,6 @@ module.exports = {
       filename: 'index.html', // output file
     }),
   ],
-
   // Determine how modules within the project are treated
   module: {
     rules: [
@@ -88,7 +88,6 @@ module.exports = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
       },
-
       // Images: Copy image files to build folder
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,

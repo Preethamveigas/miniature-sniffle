@@ -4,7 +4,7 @@
       "@babel/preset-env",
       {
         "modules": false,
-         "targets": {
+        "targets": {
           "node": "10",
           "browsers": [
             "node 10",
@@ -26,8 +26,5 @@
       }
     ]
   ],
-  "plugins": [      
-    "@babel/plugin-syntax-object-rest-spread",
-    "macros"
-  ]
+  "plugins": ["@babel/plugin-syntax-object-rest-spread", "react-hot-loader/babel"]
 }

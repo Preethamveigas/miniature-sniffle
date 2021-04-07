@@ -5,9 +5,9 @@ export default ({
   children, to, from, ...rest
 }) => {
   const pathname = useBasePath();
-  const routeIgnore = ['/resetpassword', '/login'];
+  const routeIgnore = ['/resetpassword', '/login', '/'];
   const linkto = routeIgnore.includes(to) ? to : `/${pathname + to}`;
-  console.log(pathname + to, linkto, 'pathname');
+  // console.log(pathname + to, linkto, 'pathname');
   return (
     <Link to={linkto} {...rest}>
       {children}

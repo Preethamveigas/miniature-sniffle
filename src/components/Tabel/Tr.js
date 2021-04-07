@@ -3,7 +3,7 @@ import { Link } from '@/components/common';
 export default ({
   id, img, title, subInfo, Re,
 }) => (
-  <tr>
+  <tr key={id}>
     <Link to={`/s/${id}`}>
       <td className="px-0 py-4 whitespace-nowrap">
         <div className="flex items-center">

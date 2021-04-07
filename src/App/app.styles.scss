@@ -1,0 +1,24 @@
+ 
+
+
+.landing-de {
+  background-image: url(../assets/images/landing-login.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+label[data-type="float"] {
+  position: absolute;
+  transition: all 0.3s ease, background-position 1ms;
+  padding-left: 10px;
+  transform: translateY(30px);
+  will-change: transform;
+}
+
+label[data-type="float-it"] {
+  position: absolute;
+  transform: translateY(-4px);
+  will-change: transform;
+  transition: all 0.3s ease, background-position 1ms;
+}

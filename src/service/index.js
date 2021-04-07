@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { APP } from '@/constants/storage'
 
 const REACT_APP_ENV = 'stage';
+
 export const api = axios.create({
   baseURL:
     REACT_APP_ENV === 'prod'
@@ -11,6 +13,8 @@ export const api = axios.create({
           ? 'https://uat.afya.chat'
           : 'https://staging.afya.chat',
   timeout: 30000,
+  headers: { 'auth': JSON.parse(sessionStorage.getItem(APP.login ?? {})) }
+
 });
 
 api.interceptors.response.use(

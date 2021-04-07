@@ -3,7 +3,12 @@ const { merge } = require('webpack-merge');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const common = require('./webpack.common.js');
 const paths = require('./paths');
+const webpack = require('webpack')
 
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
+console.log(isDevelopment, 'isDevelopment')
 module.exports = merge(common, {
   // Set the mode to development or production
   mode: 'development',
@@ -15,12 +20,18 @@ module.exports = merge(common, {
   devServer: {
     historyApiFallback: true,
     contentBase: paths.build,
-    open: false,
     compress: true,
-    hot: true,
     port: 3000,
   },
-
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          type: 'css/mini-extract'
+        },
+      },
+    },
+  },
   module: {
     rules: [
       // ... other rules
@@ -35,7 +46,7 @@ module.exports = merge(common, {
               // ... other options
               plugins: [
                 // ... other plugins
-                require.resolve('react-refresh/babel'),
+                isDevelopment && require.resolve('react-refresh/babel'),
               ].filter(Boolean),
             },
           },
@@ -47,7 +58,7 @@ module.exports = merge(common, {
     new Dotenv({
       path: './.env.development',
     }),
-    // new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin(),
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
 });

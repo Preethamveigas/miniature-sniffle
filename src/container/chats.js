@@ -16,7 +16,6 @@ export default ({ session_id }) => {
       enabled: false,
     },
   );
-  console.log(isLoading, error, isFetching);
   useEffect(() => {
     if (session_id) {
       refetch();
@@ -33,7 +32,7 @@ export default ({ session_id }) => {
         : data.data;
       return (
         <List>
-          {list.map((item) => (
+           {list.map((item) => (
             <Chats key={item.id} item={item} />
           ))}
         </List>

@@ -5,8 +5,7 @@ import { api } from '@/service';
 export default () => {
   const dispatch = useDispatch();
   const { user } = useStateValue();
-  console.log(user);
-  return (
+   return (
     <a
       href="#"
       className="md:mt-0 ml-8 flex whitespace-nowrap items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"

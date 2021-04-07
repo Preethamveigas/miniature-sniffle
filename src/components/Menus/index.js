@@ -1,15 +1,14 @@
+import React from 'react'
 import Menu from '@/components/Menus/MenuItems';
 import MobileMenu from '@/components/Menus/MobileMenu';
-import Logo from '@/assets/icons/logo.svg';
 import { Link } from 'react-router-dom';
-
-export default () => (
+export default ({ logo }) => (
   <>
     <div className="flex justify-start lg:w-0 lg:flex-1">
       <Link to="/home">
         <span className="sr-only">Afya</span>
         <span className="h-8 w-8 sm:h-10">
-          <Logo />
+          {logo && React.createElement(logo?.default || 'img', { src: app.logo?.default ? null : logo, className: logo.default ? null : 'w-16 h-16' })}
         </span>
       </Link>
     </div>

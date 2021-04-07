@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.scss';
-
+import { GetRoutes } from '@/Routes'
 import Bold from '@/assets/fonts/OpenSans-Bold.ttf';
 import medium from '@/assets/fonts/OpenSans-SemiBold.ttf';
 import Light from '@/assets/fonts/OpenSans-Light.ttf';
@@ -19,8 +19,7 @@ function AddFonts(font, type) {
     })
     .catch((error) => {
       // error occurred
-      console.log(error, 'ffont face');
-    });
+     });
 }
 
 AddFonts(Bold, 'sans-bold');
@@ -29,11 +28,11 @@ AddFonts(Light, 'sans-light');
 AddFonts(medium, 'sans-medium');
 
 let path = document.location.pathname.split('/')[1] || 'home';
-const whiteapps = ['hubmd', 'wise'];
+ const whiteapps = ['hubmd', 'wise'];
 path = whiteapps.includes(path) ? path : 'home';
-console.log(path, 'path');
-
+ 
+const Routes = GetRoutes(document.location.origin)
 ReactDOM.render(
-  <App baseName={path || ''} />,
+  <App baseName={path || ''} Routes={Routes} />,
   document.getElementById('app'),
 );
