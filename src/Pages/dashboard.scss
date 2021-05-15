@@ -8,8 +8,11 @@
   font-weight: bold;
 }
 .chatinput-at-symbol {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+}
+.chat-input-item-wrapper {
+  width: 74%;
 }
 .input-send-button {
   position: relative;
@@ -29,10 +32,17 @@
   left: 8px;
 }
 .chat-input-container {
-  width: 87%;
+  width: 100%;
   margin-left: 0.7rem;
   height: 60px;
   & input {
     height: 100%;
   }
+}
+
+.chat-input-paper-clip {
+  width: 20px;
+  height: 25px;
+  position: absolute;
+  right: 16px;
 }

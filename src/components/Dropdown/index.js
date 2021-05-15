@@ -12,18 +12,17 @@ export default ({ children, icon }) => {
           aria-haspopup={open}
           aria-expanded={open}
           onClick={() => set((d) => !d)}
-          onBlur={() => set(false)}
+          onBlur={() => setTimeout(() => set(false), 500)}
         >
           {icon}
         </button>
       </div>
 
       <div
-        className={`absolute ${
-          open
+        className={`absolute ${open
             ? 'transition ease-out duration-100'
             : 'transition ease-in duration-75 hidden'
-        }  right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5`}
+          }  right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5`}
       >
         <div
           className="py-1"

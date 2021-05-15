@@ -7,14 +7,14 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        "'Roboto'",
+        "'TTCommons'",
         'ui-sans-serif',
         'sans-serif',
         'system-ui',
         '-apple-system',
       ],
       body: [
-        "'Roboto'",
+        "'TTCommons'",
         'ui-sans-serif',
         'sans-serif',
         'system-ui',

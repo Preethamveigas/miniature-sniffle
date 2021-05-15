@@ -1,15 +1,15 @@
-import { createLocalStorageStateHook } from 'use-local-storage-state'
+import createPersistedState from 'use-persisted-state';
 import { APP } from '@/constants/storage'
 import { encryptMessage, ab2str, decryptMessage } from '@/utils'
 
-export const useIv = createLocalStorageStateHook(APP.iv, null)
-export const useKey = createLocalStorageStateHook(APP.aeskey, null)
+// export const useIv = createPersistedState(APP.iv, null)
+// export const useKey = createPersistedState(APP.aeskey, null)
 
 export default () => {
-    const useLogin = createLocalStorageStateHook(APP.login, null)
+    const useLogin = createPersistedState(APP.login)
     const [login, setLogin] = useLogin()
-    const [_Iv, setIv] = useIv()
-    const [__key, setkey] = useKey()
+    // const [_Iv, setIv] = useIv()
+    // const [__key, setkey] = useKey()
 
 
 

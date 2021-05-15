@@ -1,4 +1,4 @@
-import { LOADER, APP_LOGO } from '../constants/actionConstants';
+import { LOADER, APP_LOGO,APP_SET_FILTER_ACTIVE } from '../constants/actionConstants';
 
 const appReducer = (state, action) => {
   switch (action.type) {
@@ -6,6 +6,12 @@ const appReducer = (state, action) => {
       return {
         ...state,
         logo: action.logo
+      }
+      break;
+    case APP_SET_FILTER_ACTIVE:
+      return {
+        ...state,
+        activeTab: action.active
       }
       break;
     case LOADER:

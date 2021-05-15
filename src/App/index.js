@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import AppRouter from './AppRouter';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Store from '../store/configureStore';
+import AppProvider from '../store/configureStore';
 import './app.styles.scss';
-// import { hot } from 'react-hot-loader/root';
 
 const App = ({ baseName, Routes }) => {
 
@@ -17,12 +16,18 @@ const App = ({ baseName, Routes }) => {
       window.removeEventListener('resize', handleResze);
     };
   }, [toggle]);
+
   return (
-    <Store>
-      <Router>
-        <AppRouter baseName={baseName} Routes={Routes} />
-      </Router>
-    </Store>
+    <AppProvider>
+      <Frame baseName={baseName} Routes={Routes} />
+    </AppProvider>
   );
 };
 export default App
+
+const Frame = ({ baseName, Routes }) => {
+  return <Router>
+    <AppRouter baseName={baseName} Routes={Routes} />
+  </Router>
+}
+

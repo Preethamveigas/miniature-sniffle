@@ -13,8 +13,6 @@ export const api = axios.create({
           ? 'https://uat.afya.chat'
           : 'https://staging.afya.chat',
   timeout: 30000,
-  headers: { 'auth': JSON.parse(sessionStorage.getItem(APP.login ?? {})) }
-
 });
 
 api.interceptors.response.use(
@@ -27,6 +25,7 @@ api.interceptors.response.use(
     console.log(error, 'error');
   },
 );
+api.interceptors.request.use(conf => { conf.headers.auth = JSON.parse(sessionStorage.getItem(APP.login ?? {})); return conf })
 
 export default (endpoint, { method, data }) => {
   switch (method) {

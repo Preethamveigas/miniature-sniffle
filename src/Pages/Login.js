@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useQuery } from 'react-query';
 import { useHistory } from 'react-router-dom';
 import apiservice from '@/service/apis';
 import { useDispatch } from '@/store/configureStore';
@@ -11,14 +10,28 @@ import Spin from '@/components/Spin';
 import { Link, Input } from '@/components/common';
 import { Title as LoginTitle, Card } from '@/presentational';
 import useLogin from '@/hooks/useLogin'
+import createPersistedState from 'use-persisted-state';
+
+import { APP } from '@/constants/storage'
+
+export const userL = createPersistedState(APP.user)
 
 const wait = (timeout) => new Promise((resolve, reject) => setTimeout(() => {
   resolve()
 }, timeout))
-
+const apiToken = (token) => new Promise((res, rej) => {
+  api.interceptors.request.use((config) => {
+    config.headers.auth = token;
+    return config;
+  });
+  setTimeout(() => {
+    res();
+  }, 1000);
+});
 export default () => {
   const [loader, setLoader] = useState(false);
   const [login, setLogin] = useLogin()
+  const [user, setUser] = userL()
 
   const FormItems = () => {
     const v = useForm();
@@ -32,13 +45,13 @@ export default () => {
 
 
     async function saveUser(data) {
-      // const setoken = await apiToken(data?.token);
+      const setoken = await apiToken(data?.token);
       dispatch({
         type: 'LOGIN',
         logged: true,
         data,
       });
-
+      setUser(JSON.stringify(data))
       setLogin(data?.token ?? null)
       await wait(500)
       return history.push('');

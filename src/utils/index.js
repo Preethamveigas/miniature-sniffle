@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 
-export function LazyComponents(Component) {
+export function LazyComponents(Component, params) {
   return (
     <Suspense fallback="loading">
-      <Component />
+      <Component {...params} />
     </Suspense>
   );
 }
@@ -13,7 +13,7 @@ export function LazyComponents(Component) {
 export function getMessageEncoding(message) {
   let enc = new TextEncoder();
   let e = enc.encode(message);
- 
+
   return e
 }
 export function ab2str(buf) {
@@ -74,3 +74,4 @@ export function importSecretKey(rawKey) {
     ["encrypt", "decrypt"]
   );
 }
+

@@ -1,6 +1,35 @@
- 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0052a1;
+}
+
+html,
+body {
+  font-family: 'TTCommons', ui-sans-serif, sans-serif, system-ui,
+    -apple-system;
+}
+
+p {
+  font-weight: 300;
+}
+.app-header {
+  max-height: 66px;
+}
 .landing-de {
   background-image: url(../assets/images/landing-login.jpg);
   background-position: center;
@@ -8,7 +37,7 @@
   background-size: cover;
 }
 
-label[data-type="float"] {
+label[data-type='float'] {
   position: absolute;
   transition: all 0.3s ease, background-position 1ms;
   padding-left: 10px;
@@ -16,7 +45,7 @@ label[data-type="float"] {
   will-change: transform;
 }
 
-label[data-type="float-it"] {
+label[data-type='float-it'] {
   position: absolute;
   transform: translateY(-4px);
   will-change: transform;

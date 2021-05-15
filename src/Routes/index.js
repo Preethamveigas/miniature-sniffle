@@ -1,16 +1,21 @@
-import { lazy } from 'react'
+import { lazy, memo } from 'react'
 import {
     BrowserRouter as Router,
     Route,
     Switch,
     Redirect,
-    useRouteMatch
+    useRouteMatch,
+    useHistory,
+    useLocation,
+    useParams
 } from 'react-router-dom'
-import { LazyComponents } from '@/utils'
-import { useStateValue } from '@/store/configureStore'
+import { LazyComponents, } from '@/utils'
+import { useStateValue, connect, UserSelector } from '@/store/configureStore'
 import Spin from '@/components/Spin'
 import Lanf from '@/assets/images/landing-login.jpg'
 import Standard from '@/theme/standard'
+
+
 
 
 
@@ -23,50 +28,66 @@ export const GetRoutes = (origin) => {
     const Menu = lazy(() => import('@/components/Menus/'));
     const HeaderRightbar = lazy(() => import('@/components/HeaderRightbar'));
 
-    const Layout = () => {
-        const { app, user } = useStateValue()
-        // const path = useRouteMatch()
+    const Main = memo(({ user }) => {
+        const path = useRouteMatch()
+        const history = useHistory()
+
         if (!user?.data?.token && !user?.logged) {
             // return History.replace('/login')
             return <Redirect to="/login" />
         }
 
+
         return (
-            <Router>
-                {LazyComponents(() => (
-                    <Header>
-                        <Menu logo={app.logo} />
-                        <HeaderRightbar />
-                    </Header>
-                ))}
-                <Switch>
-                    <Route
-                        path="/home/profile"
-                        component={() => LazyComponents(Profile)}
-                    />
-                    <Route
-                        exact
-                        path="/home/s/:id?"
-                        component={() => LazyComponents(Dashboard)}
-                    />
-                    <Route
-                        path="/home/profile"
-                        component={() => LazyComponents(Profile)}
-                    />
-                    <Route
-                        exact
-                        path="/home/s/:id?"
-                        component={() => LazyComponents(Dashboard)}
-                    />
-                    <Route path="/s/:id?" component={() => 'sis'} />
+            <div className="px-4">
+                <Router >
+                    {LazyComponents(() => (
+                        <Header>
+                            <Menu />
+                            <HeaderRightbar />
+                        </Header>
+                    ))}
+                    <Switch>
+                        <Route
+                            path="/home/profile"
+                            component={() => LazyComponents(Profile)}
+                        />
+                        <Route
+                            // exact
+                            path="/home"
+                            component={() => {
+                                 const p = useParams()
+                                const l = useLocation()
+                                console.log(p, l,  'matched')
 
-                    <Route path="/" component={() => LazyComponents(Dashboard)} />
-                    <Route path="*" component={() => 'not found'} />
-                </Switch>
-            </Router>
+                                return LazyComponents(Dashboard)
+                            }}
+                        />
+                        <Route
+                            exact
+                            path="/home/s/:id?"
+                            component={() => LazyComponents(Dashboard)}
+                        />
+                        <Route
+                            path="/home/profile"
+                            component={() => LazyComponents(Profile)}
+                        />
+
+                        {/* <Route
+                            exact
+                            path="/home/s/:id?"
+                            component={() => LazyComponents(Dashboard)}
+                        /> */}
+                        <Route path="/s/:id?" component={() => 'sis'} />
+
+                        {/* <Route path="/" component={() => LazyComponents(Dashboard)} /> */}
+                        <Route path="*" component={() => 'not found'} />
+                    </Switch>
+                </Router>
+            </div>
         )
-    }
-
+    })
+    const Layout = connect(Main, UserSelector)
 
     switch (origin) {
         case 'http://localhost:3000':
@@ -122,6 +143,26 @@ export const GetRoutes = (origin) => {
             break;
 
         default:
+            return (<Switch>
+                <Route
+                    exact
+                    path="/"
+                    component={() => LazyComponents(Layout)}
+                />
+                <Route
+                    exact
+                    path="/resetpassword/:id?"
+                    component={() => (
+                        <Standard>{LazyComponents(PasswordReset)}</Standard>
+                    )}
+                />
+                <Route
+                    path="/login/:id?"
+                    component={() => <Standard>{LazyComponents(Login)}</Standard>}
+                />
+                <Route path="/" component={() => LazyComponents(Layout)} />
+                <Route path="*" component={() => <h1>assssssssssssssssssssssss</h1>} />
+            </Switch>)
             break;
     }
 }

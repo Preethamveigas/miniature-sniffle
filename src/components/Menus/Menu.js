@@ -9,7 +9,7 @@ export default ({ item, visible = true }) => {
       aria-expanded="false"
     >
       <Link to={`/${item.toLowerCase()}`}>
-        <span className="font-medium">{item}</span>
+        <span className="font-semibold">{item}</span>
       </Link>
     </button>
   );
